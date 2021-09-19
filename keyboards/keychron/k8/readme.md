@@ -6,6 +6,10 @@ Make example for this keyboard (after setting up your build environment):
 
     make keychron/k8:default
 
+For default ISO UK:
+
+    make keychron/k8:iso_uk
+    
 * * *
 For more info and detailed flashing instructions, please visit https://github.com/alex-dinh/keychron-k8
 

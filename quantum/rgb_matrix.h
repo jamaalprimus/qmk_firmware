@@ -218,7 +218,11 @@ extern rgb_config_t rgb_matrix_config;
 
 extern bool         g_suspend_state;
 extern uint32_t     g_rgb_timer;
-extern led_config_t g_led_config;
+#ifdef RGB_MATRIX_CONST_LED_CONFIG
+extern const led_config_t g_led_config;
+#else
+extern led_config_t g_led_config;    
+#endif
 #ifdef RGB_MATRIX_KEYREACTIVE_ENABLED
 extern last_hit_t g_last_hit_tracker;
 #endif

@@ -42,7 +42,9 @@
 #define DIP_SWITCH_PINS { D5, D6 }
 
 /* Debounce reduces chatter (unintended double-presses) - set 0 if debouncing is not needed */
-#define DEBOUNCE 20
+#define DEBOUNCE 5
 #define TAPPING_TERM 200
 #define ONESHOT_TAP_TOGGLE 5  /* Tapping this number of times holds the key until tapped once again. */
 #define ONESHOT_TIMEOUT 5000  /* Time (in ms) before the one shot key is released */
+
+#define FORCE_NKRO
