@@ -1,4 +1,4 @@
-# Keychron K2
+# Keychron K2 [![Compile K2 Firmware](https://github.com/jamaalprimus/qmk_firmware/actions/workflows/auto-build-keychron.yml/badge.svg?branch=sn32_openrgb)](https://github.com/jamaalprimus/qmk_firmware/actions/workflows/auto-build-keychron.yml)
 
 K2 Gateron RGB v2
 
