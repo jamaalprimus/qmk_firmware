@@ -26,7 +26,7 @@
 
 #define MANUFACTURER    Keychron
 #define PRODUCT         K2
-#define DESCRIPTION     K2 Gateron RGB v2
+#define DESCRIPTION     K2 Gateron RGB v2 QMK
 
 /* key matrix size */
 #define MATRIX_ROWS 6
