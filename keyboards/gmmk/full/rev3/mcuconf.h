@@ -18,22 +18,6 @@
 #define MCUCONF_H
 
 /*
- * SN32F24x drivers configuration.
- * The following settings override the default settings present in
- * the various device driver implementation headers.
- * Note that the settings for each driver only have effect if the whole
- * driver is enabled in halconf.h.
- *
- * IRQ priorities:
- * 3...0       Lowest...Highest.
- *
- * DMA priorities:
- * 0...3        Lowest...Highest.
- */
-
-#define SN32F24x_MCUCONF
-
-/*
  * HAL driver system settings.
  */
 
@@ -63,16 +47,10 @@
 /*----------------------------------------------------------------------------
   DEFINES
  *----------------------------------------------------------------------------*/
-#define IHRC48 0
-#define ILRC 1
 
 /*----------------------------------------------------------------------------
   Define clocks
  *----------------------------------------------------------------------------*/
-//#define __IHRC48_FREQ (48000000UL)
-//#define __ILRC_FREQ (32000UL)
-
-// #endif /* _MCUCONF_H_ */
 
 #define PLATFORM_MCUCONF
 

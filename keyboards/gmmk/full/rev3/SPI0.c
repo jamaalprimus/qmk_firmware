@@ -47,19 +47,6 @@
 *****************************************************************************/
 void SPI0_Init(void)
 {
-    /* mcu 48mhz */
-    SN_FLASH->LPCTRL = 0x5AFA0004;
-    SN_FLASH->LPCTRL = 0x5AFA0005;
-
-    SN_SYS0->ANBCTRL = 0x1;
-    while ((SN_SYS0->CSST & 0x1) != 0x1);
-    SN_SYS0->CLKCFG = 0x0;
-    while ((SN_SYS0->CLKCFG & 0x70) != 0x0);
-    SN_SYS0->AHBCP_b.AHBPRE = 0;
-
-    // compensate tick load value for 12MHz -> 48MHz (4x timer load value)
-    SysTick->LOAD = ((SysTick->LOAD + 1) << 2) - 1;
-        
 	SN_SYS1->AHBCLKEN |= (0x1 << 12);
 
 	SN_SSP0->CTRL0_b.DL = SSP_DL_8;

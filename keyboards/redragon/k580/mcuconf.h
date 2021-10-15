@@ -56,7 +56,7 @@
  */
 #define SYS_CLOCK_SETUP 1
 #define SYS0_CLKCFG_VAL 0
-#define AHB_PRESCALAR 0x2
+#define AHB_PRESCALAR 0
 #define CLKOUT_SEL_VAL 0x0
 #define CLKOUT_PRESCALAR 0x0
 

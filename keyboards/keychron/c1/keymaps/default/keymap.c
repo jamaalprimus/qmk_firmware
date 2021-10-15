@@ -28,8 +28,7 @@ enum layer_names {
 };
 
 enum custom_keycodes {
-  RST_KB = SAFE_RANGE,
-  BAR
+  RST_KB = SAFE_RANGE
 };
 
 #define KC_TASK LGUI(KC_TAB)        // Task viewer
@@ -60,7 +59,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     +-------------------------------------------------------------------------------------------+
     */
 
-    [0] = { // Windows base layout
+    [WIN_BASE] = { // Windows base layout
         /*  0         1         2         3         4         5         6         7         8         9         10        11        12        13        14        15        16     */
         {   KC_ESC,   KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   KC_F12,   KC_PSCR,  KC_CRTN,  RGB_MOD },
         {   KC_GRV,   KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,  KC_INS,   KC_HOME,  KC_PGUP },
@@ -70,7 +69,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         {   KC_LCTL,  KC_LGUI,  KC_LALT,  KC_NO,    KC_NO,    KC_NO,    KC_SPC,   KC_NO,    KC_NO,    KC_NO,    KC_RALT,  KC_RGUI,  MO(1),    KC_RCTL,  KC_LEFT,  KC_DOWN,  KC_RGHT }
     },
 
-    [1] = { // Windows Fn overlay
+    [WIN_FN] = { // Windows Fn overlay
         /*  0         1         2         3         4         5         6         7         8         9         10        11        12        13        14        15        16     */
         {   RESET,    KC_BRID,  KC_BRIU,  KC_TASK,  KC_FLXP,  RGB_VAD,  RGB_VAI,  KC_MPRV,  KC_MPLY,  KC_MNXT,  KC_MUTE,  KC_VOLD,  KC_VOLU,  KC_NO,    KC_SNIP,  _______,  RGB_TOG },
         {   _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______ },
@@ -96,7 +95,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     +-------------------------------------------------------------------------------------------+
     */
 
-    [2] = { // Mac base layout
+    [MAC_BASE] = { // Mac base layout
         /*  0         1         2         3         4         5         6         7         8         9         10        11        12        13        14        15        16     */
         {   KC_ESC,   KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   KC_NO,    KC_MSCR,  KC_SIRI,  RGB_MOD },
         {   KC_GRV,   KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,  KC_INS,   KC_HOME,  KC_PGUP },
@@ -106,7 +105,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         {   KC_LCTL,  KC_LALT,  KC_LGUI,  KC_NO,    KC_NO,    KC_NO,    KC_SPC,   KC_NO,    KC_NO,    KC_NO,    KC_RGUI,  KC_RALT,  MO(3),    KC_RCTL,  KC_LEFT,  KC_DOWN,  KC_RGHT }
     },
 
-    [3] = { // Mac Fn overlay
+    [MAC_FN] = { // Mac Fn overlay
         /*  0         1         2         3         4         5         6         7         8         9         10        11        12        13        14        15        16     */
         {   RESET,    KC_BRID,  KC_BRIU,  KC_MSSN,  KC_FIND,  RGB_VAD,  RGB_VAI,  KC_MPRV,  KC_MPLY,  KC_MNXT,  KC_MUTE,  KC_VOLD,  KC_VOLU,  _______,  KC_MSNP,  _______,  RGB_TOG },
         {   _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______ },
@@ -121,6 +120,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case RST_KB:
             NVIC_SystemReset();
+            return false;
     }
     return true;
 };

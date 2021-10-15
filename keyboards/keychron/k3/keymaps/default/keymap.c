@@ -69,7 +69,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   */
   [_FN] = {
   /*  0           1           2           3           4           5           6           7           8           9           10          11          12          13          14          15         */
-    { KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      RGB_VAD,    RGB_VAI,    KC_MPRV,    KC_MPLY,    KC_MNXT,    KC_MUTE,    KC_VOLD,    KC_VOLU,    KC_NO,      KC_NO,      RGB_TOG    },
+    { RESET,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      RGB_VAD,    RGB_VAI,    KC_MPRV,    KC_MPLY,    KC_MNXT,    KC_MUTE,    KC_VOLD,    KC_VOLU,    KC_NO,      KC_NO,      RGB_TOG    },
     { KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      XXXXXXX,    RGB_M_P    },
     { KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      XXXXXXX,    KC_NO      },
     { KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      XXXXXXX,    KC_NO,      XXXXXXX,    KC_NO      },

@@ -34,22 +34,6 @@ static uint8_t sel_frame_idx = 0;
 void i2c_init(void)
 {    
     // SN_GPIO0->MODE = SN_GPIO0->MODE | (1 << 20) | (1 << 21);
-    
-#if 0
-    // go 48MHz mcu
-    SN_FLASH->LPCTRL = 0x5AFA0004;
-    SN_FLASH->LPCTRL = 0x5AFA0005;
-
-    SN_SYS0->ANBCTRL = 0x1;
-    while ((SN_SYS0->CSST & 0x1) != 0x1);
-    SN_SYS0->CLKCFG = 0x0;
-    while ((SN_SYS0->CLKCFG & 0x70) != 0x0);
-    SN_SYS0->AHBCP_b.AHBPRE = 0;
-
-    // compensate tick load value for 12MHz -> 48MHz (4x timer load value)
-    SysTick->LOAD = ((SysTick->LOAD + 1) << 2) - 1;    
-#endif    
-
     I2C_SCL_HIZ;
     I2C_SDA_HIZ;
 }

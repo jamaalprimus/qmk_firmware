@@ -300,7 +300,19 @@ void matrix_init(void) {
     SN_CT16B1->MR24 = 0xFF;
 
     // Set prescale value
-    SN_CT16B1->PRE = 0x02;
+    if (SystemCoreClock > 24000000)
+    {
+        SN_CT16B1->PRE = 0x08;
+    }
+    else if (SystemCoreClock > 12000000)
+    {
+        SN_CT16B1->PRE = 0x04;
+    }
+    else
+    {
+        SN_CT16B1->PRE = 0x02;
+    }
+
 
     //Set CT16B1 as the up-counting mode.
 	SN_CT16B1->TMRCTRL = (mskCT16_CRST);
