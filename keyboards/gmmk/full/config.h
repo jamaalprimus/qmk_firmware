@@ -50,8 +50,9 @@
 #define NO_PRINT 1
 
 /* TODO: use some real random low cost solution, call rand() will crash for the reduced stack size... */
-
 #include "config_led.h"
+
+#define RGB_DISABLE_WHEN_USB_SUSPENDED true
 
 /* change the g_led_config global to const for RAM saving */
 #define RGB_MATRIX_CONST_LED_CONFIG

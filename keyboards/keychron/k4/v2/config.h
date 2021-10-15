@@ -1,5 +1,4 @@
-/* Copyright 2020 Adam Honse <calcprogrammer1@gmail.com>
- * Copyright 2020 Dimitris Mantzouranis <d3xter93@gmail.com>
+ /* Copyright 2021 Dimitris Mantzouranis <d3xter93@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,32 +14,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#pragma once
-
-#include "config_common.h"
-
 /* USB Device descriptor parameter */
 #define VENDOR_ID       0x05AC
 #define PRODUCT_ID      0x024F
 #define DEVICE_VER      0x0001
 
 #define MANUFACTURER    Keychron
-#define PRODUCT         K3
-#define DESCRIPTION     K3 Gateron RGB Non Hotswap
+#define PRODUCT         K4
+#define DESCRIPTION     K4 Gateron RGB v2
 
-/* key matrix size */
-#define MATRIX_ROWS 6
-#define MATRIX_COLS 16
-
-#define DIODE_DIRECTION COL2ROW
-
-#define MATRIX_COL_PINS { A8, A9, A10, A11, A12, A13, A14, A15, B0, B1, B2, B3, B4, B5, B6, B7 }
-#define MATRIX_ROW_PINS { C15, D11, D10, D9, D8, D7 }
-
-// Connects each switch in the dip switch to the GPIO pin of the MCU
-#define DIP_SWITCH_PINS { D4, D5 }
-
-/* Debounce reduces chatter (unintended double-presses) - set 0 if debouncing is not needed */
-#define DEBOUNCE 0
-
-#include "config_led.h"
+/* LED Status indicators */
+#define LED_CAPS_LOCK_PIN B12
+#define LED_NUM_LOCK_PIN  D4
+#define LED_PIN_ON_STATE  1
