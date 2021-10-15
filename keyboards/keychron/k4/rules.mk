@@ -36,27 +36,6 @@ OPT_DEFS = -O2
 # DFU_ARGS = -d 0483:df11 -a 0 -s 0x08000000:leave
 # DFU_SUFFIX_ARGS = -p DF11 -v 0483
 
-# Build Options
-#   comment out to disable the options.
-#
-LTO_ENABLE = no
-BACKLIGHT_ENABLE = no
-MAGIC_ENABLE = yes
-MAGIC_KEYCODE_ENABLE = yes
-BOOTMAGIC_ENABLE = full # Virtual DIP switch configuration
-MOUSEKEY_ENABLE = no    # Mouse keys
-EXTRAKEY_ENABLE = yes    # Audio control and System control
-CONSOLE_ENABLE = no     # Console for debug
-COMMAND_ENABLE = no     # Commands for debug and configuration
-SLEEP_LED_ENABLE = yes   # Breathing sleep LED during USB suspend
-NKRO_ENABLE = no        # USB Nkey Rollover
-AUDIO_ENABLE = no
-RGBLIGHT_ENABLE = no
-SERIAL_LINK_ENABLE = no
-WAIT_FOR_USB = no
-CUSTOM_MATRIX = yes
-DIP_SWITCH_ENABLE = yes
-
 # Custom RGB matrix handling
 RGB_MATRIX_ENABLE = yes
 RGB_MATRIX_DRIVER = SN32F248B

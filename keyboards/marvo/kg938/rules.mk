@@ -60,5 +60,3 @@ CUSTOM_MATRIX = yes
 # Custom RGB matrix handling
 RGB_MATRIX_ENABLE = yes
 RGB_MATRIX_DRIVER = custom
-
-OPENRGB_ENABLE = yes

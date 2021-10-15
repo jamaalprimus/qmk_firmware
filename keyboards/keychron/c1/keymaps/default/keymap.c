@@ -32,14 +32,6 @@ enum custom_keycodes {
   BAR
 };
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case RST_KB:
-            NVIC_SystemReset();
-    }
-    return true;
-};
-
 #define KC_TASK LGUI(KC_TAB)        // Task viewer
 #define KC_FLXP LGUI(KC_E)          // Windows file explorer
 #define KC_CRTN LGUI(KC_C)          // Cortana
@@ -125,44 +117,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     }
 };
 
-// Manage Windows and Mac LEDs
-// - Show status of mode switch
-// - Turn LEDs off durring USB suspend
-bool mode_leds_show = true;
-bool mode_leds_windows;
-
-static void mode_leds_update(void){
-    writePin(LED_WIN_PIN, mode_leds_show && mode_leds_windows);
-    writePin(LED_MAC_PIN, mode_leds_show && !mode_leds_windows);
-}
-
-void dip_switch_update_user(uint8_t index, bool active){
-    if(index == 0) {
-        if(active) { // Mac mode
-            layer_move(2);
-        } else { // Windows mode
-            layer_move(0);
-        }
-
-        // Update mode and update leds
-        mode_leds_windows = !active;
-        mode_leds_update();
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case RST_KB:
+            NVIC_SystemReset();
     }
-}
-
-void keyboard_pre_init_user(void) {
-    // Setup Win & Mac LED Pins as output
-    setPinOutput(LED_WIN_PIN);
-    setPinOutput(LED_MAC_PIN);
-}
-
-void suspend_power_down_user(void) {
-    // Turn leds off
-    mode_leds_show = false;
-    mode_leds_update();
-}
-
-void suspend_wakeup_init_user(void) {
-    mode_leds_show = true;
-    mode_leds_update();
-}
+    return true;
+};

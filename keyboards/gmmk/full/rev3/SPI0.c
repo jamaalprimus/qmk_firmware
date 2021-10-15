@@ -21,7 +21,6 @@
 /*_____ I N C L U D E S ____________________________________________________*/
 #include <SN32F260.h>
 #include "SPI.h"
-//#include "..\..\Utility\Utility.h"
 
 #define SN_SSP0 SN_SPI0
 #define SSP0_IRQn SPI0_IRQn
@@ -49,7 +48,6 @@
 void SPI0_Init(void)
 {
     /* mcu 48mhz */
-#if 1
     SN_FLASH->LPCTRL = 0x5AFA0004;
     SN_FLASH->LPCTRL = 0x5AFA0005;
 
@@ -61,54 +59,29 @@ void SPI0_Init(void)
 
     // compensate tick load value for 12MHz -> 48MHz (4x timer load value)
     SysTick->LOAD = ((SysTick->LOAD + 1) << 2) - 1;
-#endif    
-    
-	//Enable HCLK for SSP0
-	SN_SYS1->AHBCLKEN |= (0x1 << 12);								//Enable clock for SSP0.
+        
+	SN_SYS1->AHBCLKEN |= (0x1 << 12);
 
-	//SSP0 PCLK
-	// SN_SYS1->APBCP0 |= (0x00 << 20); 								//PCLK = HCLK/1
-	//SN_SYS1->APBCP0 |= (0x01 << 20);							//PCLK = HCLK/2
-	//SN_SYS1->APBCP0 |= (0x02 << 20);							//PCLK = HCLK/4
-	//SN_SYS1->APBCP0 |= (0x03 << 20);							//PCLK = HCLK/8
-	//SN_SYS1->APBCP0 |= (0x04 << 20);							//PCLK = HCLK/16
-
-	//SSP0 setting
-	SN_SSP0->CTRL0_b.DL = SSP_DL_8;									//3 ~ 16 Data length
-	SN_SSP0->CTRL0_b.FORMAT = SSP_FORMAT_SPI_MODE;	//Interface format
-	SN_SSP0->CTRL0_b.MS = SSP_MS_MASTER_MODE;				//Master/Slave selection bit
-	SN_SSP0->CTRL0_b.LOOPBACK = SSP_LOOPBACK_DIS; 	//Loop back mode
-	SN_SSP0->CTRL0_b.SDODIS = SSP_SDODIS_EN; 				//Slave data output
-																								//(ONLY used in slave mode)
+	SN_SSP0->CTRL0_b.DL = SSP_DL_8;
+	SN_SSP0->CTRL0_b.FORMAT = SSP_FORMAT_SPI_MODE;
+	SN_SSP0->CTRL0_b.MS = SSP_MS_MASTER_MODE;
+	SN_SSP0->CTRL0_b.LOOPBACK = SSP_LOOPBACK_DIS;
+	SN_SSP0->CTRL0_b.SDODIS = SSP_SDODIS_EN;
 
 	SN_SSP0->CTRL0_b.TXFIFOTH = 7;
-    // SN_SSP0->CLKDIV_b.DIV = (SSP_DIV/2) - 1;				//SSPn clock divider
-    // SN_SSP0->CLKDIV_b.DIV = 8;
-    // SN_SSP0->CLKDIV_b.DIV = 0; // 12/2 = 6MHz
-    // SN_SSP0->CLKDIV_b.DIV = 1; // 12/4 = 3MHz < SNLED2735 spec 4MHz
-    SN_SSP0->CLKDIV_b.DIV = 5;  // 48/12 = 4MHz
+    // SN_SSP0->CLKDIV_b.DIV = 5;   // 48/12 = 4MHz
+    SN_SSP0->CLKDIV_b.DIV = 4;      // 48/10 = 4.8 MHz
     
-    
-	//SSP0 SPI mode
-	SN_SSP0->CTRL1 = SSP_CPHA_FALLING_EDGE|					//Clock phase for edge sampling
-									 SSP_CPOL_SCK_IDLE_LOW|					//Clock polarity selection bit
-									 SSP_MLSB_MSB;									//MSB/LSB selection bit
+    SN_SSP0->CTRL1 = SSP_CPHA_FALLING_EDGE | SSP_CPOL_SCK_IDLE_LOW | SSP_MLSB_MSB;	
 
-	//SSP0 SEL0 setting
-	SN_SSP0->CTRL0_b.SELDIS = SSP_SELDIS_DIS; 			//Auto-SEL disable bit
-	//SN_GPIO1->MODE_b.MODE2=1;											//SEL(P2.15) is outout high
-	//__SPI0_SET_SEL0;
+	SN_SSP0->CTRL0_b.SELDIS = SSP_SELDIS_DIS;
 
-	//SSP0 Fifo reset
 	__SPI0_FIFO_RESET;
 
-	//SSP0 interrupt disable
 	NVIC_DisableIRQ(SSP0_IRQn);
 
-	//__SSP0_DATA_FETCH_HIGH_SPEED;									//Enable if Freq. of SCK > 6MHz
-
-	//SSP0 enable
-	SN_SSP0->CTRL0_b.SSPEN  = SSP_SSPEN_EN;    			//SSP enable bit
+	// __SSP0_DATA_FETCH_HIGH_SPEED;									//Enable if Freq. of SCK > 6MHz
+	SN_SSP0->CTRL0_b.SSPEN = SSP_SSPEN_EN;
 }
 
 /*****************************************************************************
@@ -122,11 +95,9 @@ void SPI0_Init(void)
 void SPI0_Enable(void)
 {
 	//Enable HCLK for SSP0
-	SN_SYS1->AHBCLKEN |= (0x1 << 12);								//Enable clock for SSP0.
-
-  SN_SSP0->CTRL0_b.SSPEN  = SSP_SSPEN_EN;    			//SSP enable bit
+	SN_SYS1->AHBCLKEN |= (0x1 << 12);
+    SN_SSP0->CTRL0_b.SSPEN = SSP_SSPEN_EN;
 	__SPI0_FIFO_RESET;
-        
 }
 
 /*****************************************************************************
@@ -139,56 +110,33 @@ void SPI0_Enable(void)
 *****************************************************************************/
 void SPI0_Disable(void)
 {
-  SN_SSP0->CTRL0_b.SSPEN  = SSP_SSPEN_DIS;    		//SSP disable bit
-
-	//Disable HCLK for SSP0
-	SN_SYS1->AHBCLKEN &=~ (0x1 << 12);							//Disable clock for SSP0.
+    SN_SSP0->CTRL0_b.SSPEN = SSP_SSPEN_DIS;
+	SN_SYS1->AHBCLKEN &=~ (0x1 << 12);
 }
 
 void SPI0_Write(unsigned char *p, int len)
 {
-    int i;
-    
-    // __SPI0_CLR_SEL0;
-    //volatile uint8_t bDummyRead;
-    
-    for (i = 0; i < len; i++)
+    for (int i = 0; i < len; i++)
     {
-        // while(SN_SSP0->STAT_b.TX_EMPTY != 0);
-        // while(SN_SSP0->STAT_b.TX_FULL == 1);
-        while(!SN_SSP0->STAT_b.TX_EMPTY);
+        // while (!SN_SSP0->STAT_b.TX_EMPTY);
+        while (SN_SSP0->STAT_b.TX_FULL);
         SN_SSP0->DATA_b.Data = *p++;
-        //bDummyRead = SN_SSP0->DATA_b.Data;
-        //bDummyRead++;
-        // while (SN_SSP0->STAT_b.TX_FULL == 1);
     }
     
-    while(SN_SSP0->STAT_b.BUSY == 1);
-        
-    // __SPI0_FIFO_RESET;
-        
-    // __SPI0_SET_SEL0;
+    while (SN_SSP0->STAT_b.BUSY);
 }
-
 
 void SPI0_Read3(unsigned char b1, unsigned char b2, unsigned char *b3)
-{    
-    // __SPI0_CLR_SEL0;
-    //volatile uint8_t bDummyRead;
-    
-        // while(SN_SSP0->STAT_b.TX_EMPTY != 0);
-        // while(SN_SSP0->STAT_b.TX_FULL == 1);
-    while(!SN_SSP0->STAT_b.TX_EMPTY);
+{
+    /* write first 2 bytes: header and address */
+    while (!SN_SSP0->STAT_b.TX_EMPTY);
     SN_SSP0->DATA_b.Data = b1;
-    while(!SN_SSP0->STAT_b.TX_EMPTY);
     SN_SSP0->DATA_b.Data = b2;
-    while(SN_SSP0->STAT_b.BUSY == 1);
+
+    /* read 1 byte data */
+    while (SN_SSP0->STAT_b.BUSY);
+    while (SN_SSP0->STAT_b.RX_EMPTY);
     *b3 = SN_SSP0->DATA_b.Data;
          
-    while(SN_SSP0->STAT_b.BUSY == 1);
-        
-    // __SPI0_FIFO_RESET;
-        
-    // __SPI0_SET_SEL0;
+    while (SN_SSP0->STAT_b.BUSY);
 }
-

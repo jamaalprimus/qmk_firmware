@@ -1,8 +1,4 @@
 # project specific files
-SRC += config_led.c
-SRC += led_matrix.c
-SRC += backlight.c
-SRC += SPI0.c
 
 ## chip/board settings
 # - the next two should match the directories in
@@ -47,9 +43,8 @@ BOOTMAGIC_ENABLE = yes # Virtual DIP switch configuration
 MOUSEKEY_ENABLE = no    # Mouse keys
 EXTRAKEY_ENABLE = no    # Audio control and System control
 SLEEP_LED_ENABLE = no   # Breathing sleep LED during USB suspend
-# NKRO_ENABLE = yes        # USB Nkey Rollover
 NKRO_ENABLE = no
-#CONSOLE_ENABLE = yes
+CONSOLE_ENABLE = no
 SERIAL_LINK_ENABLE = no
 WAIT_FOR_USB = no
 CUSTOM_MATRIX = no
@@ -67,10 +62,13 @@ OPT_DEFS += -DCORTEX_ENABLE_WFI_IDLE=TRUE
 USE_LINK_GC = yes
 LTO_ENABLE = yes
 
-# RGBLIGHT_ANIMATION = yes
+USE_EXCEPTIONS_STACKSIZE = 0xD0
+USE_PROCESS_STACKSIZE = 0x1E0
+
+DEFAULT_FOLDER = gmmk/full/rev3
 
 # process stack size of 0x1c0 crashes during SEND_STRING
-USE_EXCEPTIONS_STACKSIZE = 0xc0
+USE_EXCEPTIONS_STACKSIZE = 0xD0
 # 0x180 140 f0 d0    80gg a0gg b0gg b8gg c0 ok
-USE_PROCESS_STACKSIZE = 0x1F0
+USE_PROCESS_STACKSIZE = 0x1E0
 # 0x210

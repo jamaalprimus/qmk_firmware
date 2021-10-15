@@ -11,7 +11,6 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-
 #pragma once
 
 // Backlight configuration
@@ -20,15 +19,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define LED_MATRIX_ROWS 7
 #define LED_MATRIX_ROW_CHANNELS 3
 #define LED_MATRIX_ROWS_HW (LED_MATRIX_ROWS * LED_MATRIX_ROW_CHANNELS)
-// #define LED_MATRIX_ROW_PINS { C0, C1, C3, C4, C5, C6, C7, C8, C9, C10, C11, C12, B6, B7, B8, B9, B10, B11 }
+
 #define LED_MATRIX_ROW_PINS MATRIX_ROW_PINS
 #define LED_MATRIX_COLS 16
-// #define LED_MATRIX_COL_PINS { A0, A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12, A13, A14, B0, B1 }
+
 #define LED_MATRIX_COL_PINS MATRIX_COL_PINS
 
+#ifdef QMK_KEYMAP_H
+    #include QMK_KEYMAP_H
+#endif
 
-// #define DRIVER_LED_TOTAL (MATRIX_LED_TOTAL + UNDERGLOW_LED_TOTAL)
-#define DRIVER_LED_TOTAL 104
+#ifdef KEYMAP_ISO
+    #define DRIVER_LED_TOTAL 105
+#else
+    #define DRIVER_LED_TOTAL 104
+#endif
 
 /* indicator pins */
 #define LED_PIN_ON_STATE    0
