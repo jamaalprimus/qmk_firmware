@@ -302,11 +302,11 @@ void matrix_init(void) {
     // Set prescale value
     if (SystemCoreClock > 24000000)
     {
-        SN_CT16B1->PRE = 0x08;
+        SN_CT16B1->PRE = 0x10;
     }
     else if (SystemCoreClock > 12000000)
     {
-        SN_CT16B1->PRE = 0x04;
+        SN_CT16B1->PRE = 0x08;
     }
     else
     {

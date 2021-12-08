@@ -41,7 +41,7 @@
 /*
  * Current Line Coding.
  */
-static cdc_linecoding_t linecoding = {{0x00, 0x96, 0x00, 0x00}, /* 38400.                           */
+static const cdc_linecoding_t linecoding = {{0x00, 0x96, 0x00, 0x00}, /* 38400.                           */
                                       LC_STOP_1,
                                       LC_PARITY_NONE,
                                       8};

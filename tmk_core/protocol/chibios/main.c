@@ -161,7 +161,7 @@ int main(void) {
 #endif
 
 #ifdef SN32_EEPROM_ENABLE
-    // EEPROM_Init();
+    EEPROM_Init();
 #endif
 
     // TESTING
