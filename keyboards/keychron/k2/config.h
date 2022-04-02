@@ -43,7 +43,7 @@
 /* Debounce reduces chatter (unintended double-presses) - set 0 if debouncing is not needed */
 #define DEBOUNCE 5
 
-// Disable RGB when usb is suspended 
+// Disable RGB when usb is suspended
 #define RGB_DISABLE_WHEN_USB_SUSPENDED true
 
 /* LED Status indicators */

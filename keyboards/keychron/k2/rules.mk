@@ -53,9 +53,10 @@ NKRO_ENABLE = no        # USB Nkey Rollover
 AUDIO_ENABLE = no
 RGBLIGHT_ENABLE = no
 SERIAL_LINK_ENABLE = no
-WAIT_FOR_USB = no
+WAIT_FOR_USB = yes
 CUSTOM_MATRIX = yes
 DIP_SWITCH_ENABLE = yes
+KEYBOARD_SHARED_EP = no
 
 # Custom RGB matrix handling
 RGB_MATRIX_ENABLE = yes
