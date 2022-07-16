@@ -46,7 +46,7 @@ MAGIC_KEYCODE_ENABLE = yes
 BOOTMAGIC_ENABLE = full # Virtual DIP switch configuration
 MOUSEKEY_ENABLE = no    # Mouse keys
 EXTRAKEY_ENABLE = yes    # Audio control and System control
-CONSOLE_ENABLE = no     # Console for debug
+CONSOLE_ENABLE = yes# Console for debug
 COMMAND_ENABLE = no     # Commands for debug and configuration
 SLEEP_LED_ENABLE = no   # Breathing sleep LED during USB suspend
 NKRO_ENABLE = no        # USB Nkey Rollover
@@ -59,7 +59,7 @@ DIP_SWITCH_ENABLE = yes
 KEYBOARD_SHARED_EP = no
 
 # Custom RGB matrix handling
-RGB_MATRIX_ENABLE = yes
+RGB_MATRIX_ENABLE = no
 RGB_MATRIX_DRIVER = SN32F248B
 
-OPENRGB_ENABLE = yes
+OPENRGB_ENABLE = no
