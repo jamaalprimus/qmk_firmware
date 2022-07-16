@@ -154,7 +154,7 @@ bool dip_switch_update_user(uint8_t index, bool active) {
       }
       break;
   }
-  //return true;
+  return true;
 }
 
 void keyboard_post_init_user(void) {
