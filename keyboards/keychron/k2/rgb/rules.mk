@@ -13,7 +13,7 @@ NKRO_ENABLE = no            # Enable N-Key Rollover
 BACKLIGHT_ENABLE = no       # Enable keyboard backlight functionality
 AUDIO_ENABLE = no           # Audio output
 
-WAIT_FOR_USB = no
+WAIT_FOR_USB = yes
 CUSTOM_MATRIX = yes
 DIP_SWITCH_ENABLE = yes
 
@@ -26,3 +26,5 @@ SRC = ../../../drivers/led/sn32/matrix_sn32f24xx.c
 
 # Build ansi by default
 DEFAULT_FOLDER = keychron/k2/rgb/ansi
+
+SLEEP_LED_ENABLE = no

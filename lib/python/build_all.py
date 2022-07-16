@@ -11,7 +11,7 @@ parser.add_argument("--blacklist", help="enables the blacklist (specify a filena
 parser.add_argument("--debug", help="displays which keyboards are being excluded based on whitelist/blacklist", action="store_true")
 args = parser.parse_args()
 
-KEYBOARDS = []
+KEYBOARDS = ['keychron/k2']
 # Search the repository for Sonix SN32F2 keyboard directories
 command = "grep -rl 'MCU = SN32F2' | sed -e 's;keyboards/;;g' -e 's;/rules.mk;;g'| sort"
 
