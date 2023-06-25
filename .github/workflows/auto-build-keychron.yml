@@ -1,0 +1,34 @@
+name: Compile K2 Firmware
+
+on:
+  push:
+    branches:
+    - sn32
+    - sn32_openrgb
+    - sn32_develop
+    - sn32_openrgb_new
+  pull_request:
+    branches:
+    - sn32
+    - sn32_openrgb
+    - sn32_openrgb_new
+
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+
+    container: jath03/sonix_base_container
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: recursive
+    - name: Install dependencies
+      run: pip3 install -r requirements.txt
+    - name: Build keyboards
+      run: python3 bin/build_keychron_k2.py
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: Pre-Compiled Firmware
+        path: '*.bin'
