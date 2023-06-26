@@ -140,6 +140,10 @@ void led_ch_ctrl(void) {
                 chan_col_order[i] = 19;
                 break;
 
+            case D4:
+                chan_col_order[i] = 20;
+                break;
+
             case D5:
                 chan_col_order[i] = 21;
                 break;
@@ -260,8 +264,12 @@ static const PWMConfig pwmcfg = {
             [19] = {.mode = PWM_OUTPUT_ACTIVE_LOW},
 #else
             [19] = {.mode = PWM_OUTPUT_DISABLED},
-#endif /* Channel 20 is a dummy channel in 26x .*/
+#endif 
+#ifdef ACTIVATE_PWM_CHAN_20
+            [20] = {.mode = PWM_OUTPUT_ACTIVE_LOW},
+#else
             [20] = {.mode = PWM_OUTPUT_DISABLED},
+#endif 
 #ifdef ACTIVATE_PWM_CHAN_21
             [21] = {.mode = PWM_OUTPUT_ACTIVE_LOW},
 #else
